@@ -1,0 +1,4 @@
+rootProject.name = 'kevany'
+include 'kevany-serv-scheduler'
+include 'kevany-common-core'
+

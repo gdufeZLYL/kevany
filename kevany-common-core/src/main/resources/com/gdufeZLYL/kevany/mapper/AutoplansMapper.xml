@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gdufeZLYL.kevany.mapper.AutoplansMapper" >
+    <resultMap id="BaseResultMap" type="com.gdufeZLYL.kevany.entity.Autoplans" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="type" property="type" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="relateProjId" property="relateProjId" jdbcType="INTEGER" />
+        <result column="description" property="description" jdbcType="VARCHAR" />
+        <result column="content" property="content" jdbcType="VARCHAR" />
+        <result column="different" property="different" jdbcType="VARCHAR" />
+        <result column="maillist" property="maillist" jdbcType="VARCHAR" />
+        <result column="mailall" property="mailall" jdbcType="INTEGER" />
+        <result column="agentType" property="agentType" jdbcType="INTEGER" />
+        <result column="istmp" property="istmp" jdbcType="INTEGER" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        id,`type`,`name`,relateProjId,description,content,different,maillist,mailall,agentType,istmp
+    </sql>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from autoplans
+        where id = #{planId,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="com.gdufeZLYL.kevany.entity.Autoplans" >
+        insert into autoplans
+        (type, name, relateProjId, description, content, different, maillist, mailall,
+        agentType, istmp)
+        values (#{autoplans.type,jdbcType=INTEGER}, #{autoplans.name,jdbcType=VARCHAR},
+        #{autoplans.relateProjId,jdbcType=INTEGER}, #{autoplans.description,jdbcType=VARCHAR},
+        #{autoplans.content,jdbcType=VARCHAR}, #{autoplans.different,jdbcType=VARCHAR},
+        #{autoplans.maillist,jdbcType=INTEGER}, #{autoplans.mailall,jdbcType=INTEGER},
+        #{autoplans.agentType,jdbcType=INTEGER}, #{autoplans.istmp,jdbcType=INTEGER})
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.gdufeZLYL.kevany.entity.Autoplans" >
+        insert into autoplans
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            type,
+            <if test="autoplans.name != null" >
+                name,
+            </if>
+            relateProjId,
+            <if test="autoplans.description != null" >
+                description,
+            </if>
+            <if test="autoplans.content != null" >
+                content,
+            </if>
+            <if test="autoplans.different != null" >
+                different,
+            </if>
+            <if test="autoplans.maillist != null" >
+                maillist,
+            </if>
+            mailall,
+            agentType,
+            istmp
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            #{autoplans.type,jdbcType=INTEGER},
+            <if test="autoplans.name != null" >
+                #{autoplans.name,jdbcType=VARCHAR},
+            </if>
+            #{autoplans.relateProjId,jdbcType=INTEGER},
+            <if test="autoplans.description != null" >
+                #{autoplans.description,jdbcType=VARCHAR},
+            </if>
+            <if test="autoplans.content != null" >
+                #{autoplans.content,jdbcType=VARCHAR},
+            </if>
+            <if test="autoplans.different != null" >
+                #{autoplans.different,jdbcType=VARCHAR},
+            </if>
+            <if test="autoplans.maillist != null" >
+                #{autoplans.maillist,jdbcType=INTEGER},
+            </if>
+            #{autoplans.mailall,jdbcType=INTEGER},
+            #{autoplans.agentType,jdbcType=INTEGER},
+            #{autoplans.istmp,jdbcType=INTEGER}
+        </trim>
+    </insert>
+
+</mapper>

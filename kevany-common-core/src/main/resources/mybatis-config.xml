@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <settings>
+        <!-- changes from the defaults for testing -->
+        <!-- 配置二级缓存 -->
+        <setting name="cacheEnabled" value="false" />
+        <setting name="useGeneratedKeys" value="true" />
+        <setting name="defaultExecutorType" value="REUSE" />
+    </settings>
+
+    <!-- 一些技术文章
+    《深入理解mybatis原理》 Mybatis数据源与连接池
+    https://blog.csdn.net/luanlouis/article/details/37671851
+    [技术分享]-Mybatis配置多个数据源（Java）
+    https://blog.csdn.net/qiaoqiao0609/article/details/79219540
+    纯Java配置使用slf4j配置log4j
+    https://www.cnblogs.com/zml-java/p/6148849.html
+    Spring集成MyBatis完整示例
+    https://www.cnblogs.com/best/p/5648740.html
+    -->
+    <!--
+    <typeAliases>
+        <typeAlias alias="TopData" type="com.cmcc.top.mysql.entity.TopData"></typeAlias>
+    </typeAliases>
+    -->
+
+    <environments default="test">
+        <environment id="TEST_ENV">
+            <transactionManager type="JDBC"></transactionManager>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver" />
+                <property name="url" value="jdbc:mysql://localhost:3306/kedb?relaxAutoCommit=true&amp;autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull&amp;useUnicode=true&amp;characterEncoding=utf8" />
+                <property name="username" value="root" />
+                <property name="password" value="123456" />
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <mapper resource="com/gdufeZLYL/kevany/mapper/AutoplansMapper.xml"/>
+    </mappers>
+</configuration>
